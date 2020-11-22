@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 100);
+		var tryCount = 0;
+		var maxTryCount = 3;
+		var exit = 101;
+		var User_1 = "Игрок №1";
+		var User_2 = "Игрок №2";
+		var x = 0;
+		var User = "Игрок";
+		
+
+		function readInt(id){
+			var number = document.getElementById(id).value;
+			return parseInt(number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(id_write, text){
+			document.getElementById(id_write).innerHTML = text;
+		}
+
+		function hide(id_button){
+			document.getElementById(id).style.display = "none";
+		}
+
+		function guess(User, id, id_write, id_button){ 
+			tryCount++;
+			var userAnswer = readInt(id);
+			if (userAnswer == answer) {
+				write(id_write, User + " победил!!");
+				hide(id_button);
+				hide(id);
+			} else if (userAnswer == exit) {
+				write(id_write, User + " вышел из игры");
+			} else if(tryCount >= maxTryCount){
+				write(id_write, User + "проиграл<br>Правильный ответ: " + answer);
+				hide(id_button);
+				hide(id);	
+			} else if(userAnswer > answer) {
+				write(id_write, User + " ввел слишком большое число");
+			} else if(userAnswer < answer) {
+				write(id_write, User + " ввел слишком маленькое число");
+			} 
+				return userAnswer;	
+			}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.php">Главная</a>
+		<a href="puzzle.php">Загадки</a>
+		<a href="#">Угадайка</a>
+		<a href="password.php">Генератор пароля</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1><b>Игра угадайка</b></h1>
+
+			<div class="box">
+
+				<p id='info_1'><b>Игрок №1</b></p>
+				<input type="text" id='userAnswer_1'>
+				<br>
+				<a href="#" onClick="guess(User_1, 'userAnswer_1', 'info_1', 'button_1');" id='button_1'>Начать</a>
+				<br>
+				<br>
+				<br>
+				<br>
+				<p id="info_2"><b>Игрок №2</b></p>
+				<input type="text" id="userAnswer_2">
+				<br>
+				<a href="#" onClick="guess(User_2, 'userAnswer_2', 'info_2', 'button_2');" id="button_2">Начать</a>
+
+
+
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; 2020 FS
+
+
+</body>
+</html>
